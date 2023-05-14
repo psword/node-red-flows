@@ -1,0 +1,777 @@
+[
+    {
+        "id": "fbd36c31b09ebd79",
+        "type": "tab",
+        "label": "Team-1.Microcontrollers-MQTT-Receive",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b29b574848daf13d",
+        "type": "mqtt in",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener",
+        "topic": "XXXX/Forssa",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "25b85988b913b9bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "8ddf2f6a00353e0e",
+                "a838db1c36b50723"
+            ]
+        ]
+    },
+    {
+        "id": "381769d1815f3936",
+        "type": "switch",
+        "z": "fbd36c31b09ebd79",
+        "name": "RouteID",
+        "property": "payload.ID",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "XXXX_Team_10",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 300,
+        "wires": [
+            [
+                "dde333c6bc2654bd",
+                "782663e30834484d",
+                "a2b6cbdff9b57574",
+                "3ec99fd86d75710d",
+                "b93606ea7c36db11",
+                "29d82b5a7a50e929"
+            ]
+        ]
+    },
+    {
+        "id": "dde333c6bc2654bd",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Date",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Date",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 380,
+        "wires": [
+            [
+                "ce3b1ee6637a45bb",
+                "b332a461c12ddcf1"
+            ]
+        ]
+    },
+    {
+        "id": "a2b6cbdff9b57574",
+        "type": "debug",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Debug-msg.payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "8ddf2f6a00353e0e",
+        "type": "json",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-JSON-JVscript",
+        "property": "payload",
+        "action": "obj",
+        "pretty": true,
+        "x": 390,
+        "y": 240,
+        "wires": [
+            [
+                "381769d1815f3936"
+            ]
+        ]
+    },
+    {
+        "id": "ce3b1ee6637a45bb",
+        "type": "ui_text",
+        "z": "fbd36c31b09ebd79",
+        "group": "0429db559d1d965f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "XXXX-Dashboard",
+        "label": "Date:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1260,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "782663e30834484d",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Time",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Time",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 520,
+        "wires": [
+            [
+                "4e0fa61c4d4e6a47",
+                "5dc71411e2e3ebb7"
+            ]
+        ]
+    },
+    {
+        "id": "4e0fa61c4d4e6a47",
+        "type": "ui_text",
+        "z": "fbd36c31b09ebd79",
+        "group": "0429db559d1d965f",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "XXXX-Dashboard",
+        "label": "Time:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1300,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "3ec99fd86d75710d",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Temperature",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Temperature",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1020,
+        "y": 640,
+        "wires": [
+            [
+                "38a914f57eb95487",
+                "e070cdf4c2a82711",
+                "3004fc68dfc11550",
+                "e44ae8f0bf5d8f5a"
+            ]
+        ]
+    },
+    {
+        "id": "38a914f57eb95487",
+        "type": "ui_text",
+        "z": "fbd36c31b09ebd79",
+        "group": "0429db559d1d965f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "XXXX-Dashboard",
+        "label": "Temperature:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1300,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "e070cdf4c2a82711",
+        "type": "ui_gauge",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Temperature-Gauge",
+        "group": "0429db559d1d965f",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "Celsius",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "40",
+        "className": "",
+        "x": 1350,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "b332a461c12ddcf1",
+        "type": "ui_template",
+        "z": "fbd36c31b09ebd79",
+        "group": "cc0e2621a8ac7330",
+        "name": "Forssa-Listener-Widget-msg.payload",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div layout=\"row\" layout-align=\"space-between\">\n    <p>Date: </p>\n    <font color=\"red\">\n        <b>{{msg.payload}}</b>\n    </font>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1330,
+        "y": 380,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5dc71411e2e3ebb7",
+        "type": "ui_template",
+        "z": "fbd36c31b09ebd79",
+        "group": "cc0e2621a8ac7330",
+        "name": "Forssa-Listener-Widget-msg.payload",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div layout=\"row\" layout-align=\"space-between\">\n    <p>Time: </p>\n    <font color=\"green\">\n        <b>{{msg.payload}}</b>\n    </font>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1350,
+        "y": 520,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3004fc68dfc11550",
+        "type": "ui_template",
+        "z": "fbd36c31b09ebd79",
+        "group": "cc0e2621a8ac7330",
+        "name": "Forssa-Listener-Widget-msg.payload",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div layout=\"row\" layout-align=\"space-between\">\n    <p>Temperature: </p>\n    <font color=\"orange\">\n        <b>{{msg.payload}}</b>\n    </font>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1350,
+        "y": 640,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e44ae8f0bf5d8f5a",
+        "type": "ui_chart",
+        "z": "fbd36c31b09ebd79",
+        "name": "Stat-Plot-Temperature",
+        "group": "0429db559d1d965f",
+        "order": 4,
+        "width": "6",
+        "height": "10",
+        "label": "Chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Waiting For Data...",
+        "dot": true,
+        "ymin": "15.0",
+        "ymax": "70.0",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1300,
+        "y": 760,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b93606ea7c36db11",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.Humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1010,
+        "y": 860,
+        "wires": [
+            [
+                "c32490c6afd4ef32",
+                "fc46eabef3b1ca3a",
+                "3c1a4360fd09a365",
+                "5d0b3faee7df3272"
+            ]
+        ]
+    },
+    {
+        "id": "c32490c6afd4ef32",
+        "type": "ui_text",
+        "z": "fbd36c31b09ebd79",
+        "group": "0429db559d1d965f",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "XXXX-Dashboard",
+        "label": "Humidity:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 1300,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "fc46eabef3b1ca3a",
+        "type": "ui_template",
+        "z": "fbd36c31b09ebd79",
+        "group": "cc0e2621a8ac7330",
+        "name": "Forssa-Listener-Widget-msg.payload",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "format": "<div layout=\"row\" layout-align=\"space-between\">\n    <p>Humidity: </p>\n    <font color=\"orange\">\n        <b>{{msg.payload}}</b>\n    </font>\n</div>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1350,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3c1a4360fd09a365",
+        "type": "ui_gauge",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Listener-Humidity-Gauge",
+        "group": "0429db559d1d965f",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "%",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "50",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "40",
+        "className": "",
+        "x": 1330,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "5d0b3faee7df3272",
+        "type": "ui_chart",
+        "z": "fbd36c31b09ebd79",
+        "name": "Stat-Plot-Humidity",
+        "group": "0429db559d1d965f",
+        "order": 4,
+        "width": "6",
+        "height": "10",
+        "label": "Chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Waiting For Data...",
+        "dot": true,
+        "ymin": "0.0",
+        "ymax": "40.0",
+        "removeOlder": "72",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 1290,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "12146d1d199d057a",
+        "type": "debug",
+        "z": "fbd36c31b09ebd79",
+        "name": "Team1-msg.payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "a838db1c36b50723",
+        "type": "switch",
+        "z": "fbd36c31b09ebd79",
+        "name": "RouteID",
+        "property": "payload.ID",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "BEBE-Team1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 300,
+        "y": 80,
+        "wires": [
+            [
+                "12146d1d199d057a"
+            ]
+        ]
+    },
+    {
+        "id": "ddade318f86c509d",
+        "type": "mqtt out",
+        "z": "fbd36c31b09ebd79",
+        "name": "Forssa-Broadcast",
+        "topic": "XXXX/Forssa",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "25b85988b913b9bf",
+        "x": 1170,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "29d82b5a7a50e929",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Change ID Field",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload.ID",
+                "pt": "msg",
+                "to": "\"BEBE-Team1\"",
+                "tot": "json"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 200,
+        "wires": [
+            [
+                "ddade318f86c509d",
+                "5a0fb7691e1af9bb",
+                "fad7acd5e0bd4697"
+            ]
+        ]
+    },
+    {
+        "id": "d0d549bb92d14ece",
+        "type": "mqtt out",
+        "z": "fbd36c31b09ebd79",
+        "name": "Thingspeak Field 1",
+        "topic": "channels/1977499/publish/fields/field1",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e77acae11f05cbcf",
+        "x": 1430,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5a0fb7691e1af9bb",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Send ID",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "BEBE-Team1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1140,
+        "y": 200,
+        "wires": [
+            [
+                "d0d549bb92d14ece"
+            ]
+        ]
+    },
+    {
+        "id": "a04816583430d7db",
+        "type": "mqtt out",
+        "z": "fbd36c31b09ebd79",
+        "name": "Thingspeak Field 6",
+        "topic": "channels/1977499/publish/fields/field6",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e77acae11f05cbcf",
+        "x": 1430,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "fad7acd5e0bd4697",
+        "type": "change",
+        "z": "fbd36c31b09ebd79",
+        "name": "Send Custom",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "60",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1160,
+        "y": 240,
+        "wires": [
+            [
+                "a04816583430d7db"
+            ]
+        ]
+    },
+    {
+        "id": "25b85988b913b9bf",
+        "type": "mqtt-broker",
+        "name": "HAMK",
+        "broker": "iot.research.hamk.fi ",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "0429db559d1d965f",
+        "type": "ui_group",
+        "name": "[XXXX] Team-1",
+        "tab": "c92adbabf5ce1faa",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cc0e2621a8ac7330",
+        "type": "ui_group",
+        "name": "Text-Version",
+        "tab": "cec3395ebbf356a5",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e77acae11f05cbcf",
+        "type": "mqtt-broker",
+        "name": "ThingSpeakMQTT",
+        "broker": "mqtt3.thingspeak.com",
+        "port": "1883",
+        "clientid": "FzcGOTMjJA4WNAswITEiMzM",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "3",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "c92adbabf5ce1faa",
+        "type": "ui_tab",
+        "name": "Graphical-Version",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "cec3395ebbf356a5",
+        "type": "ui_tab",
+        "name": "Text-Version",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

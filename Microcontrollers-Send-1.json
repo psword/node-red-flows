@@ -1,0 +1,209 @@
+[
+    {
+        "id": "900d6bad45ce3bdb",
+        "type": "tab",
+        "label": "15.11.Microcontrollers-MQTT-Send",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b025c5cc2e2e70a4",
+        "type": "mqtt out",
+        "z": "900d6bad45ce3bdb",
+        "name": "Forssa-Broadcast",
+        "topic": "XXXX/Forssa",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "25b85988b913b9bf",
+        "x": 1030,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "b2f361454003b1c8",
+        "type": "debug",
+        "z": "900d6bad45ce3bdb",
+        "name": "Forssa-Broadcaster-Debug-LIVEmsg.payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "c354207ed99c0261",
+        "type": "inject",
+        "z": "900d6bad45ce3bdb",
+        "name": "Forssa-Time",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "20",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "XXXX/Forssa",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 380,
+        "wires": [
+            [
+                "d12550dd71d8ca92"
+            ]
+        ]
+    },
+    {
+        "id": "d12550dd71d8ca92",
+        "type": "moment",
+        "z": "900d6bad45ce3bdb",
+        "name": "Time",
+        "topic": "",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/Helsinki",
+        "adjAmount": "0",
+        "adjType": "minutes",
+        "adjDir": "add",
+        "format": "HH:mm.ss",
+        "locale": "en-US",
+        "output": "time",
+        "outputType": "global",
+        "outTz": "Europe/Helsinki",
+        "x": 390,
+        "y": 380,
+        "wires": [
+            [
+                "ba7bb363c0618fad"
+            ]
+        ]
+    },
+    {
+        "id": "ba7bb363c0618fad",
+        "type": "moment",
+        "z": "900d6bad45ce3bdb",
+        "name": "Date",
+        "topic": "",
+        "input": "payload",
+        "inputType": "msg",
+        "inTz": "Europe/Helsinki",
+        "adjAmount": "0",
+        "adjType": "days",
+        "adjDir": "add",
+        "format": "DD.MM.YYYY",
+        "locale": "en-US",
+        "output": "date",
+        "outputType": "global",
+        "outTz": "Europe/Helsinki",
+        "x": 590,
+        "y": 380,
+        "wires": [
+            [
+                "1f51fd6865dd121a"
+            ]
+        ]
+    },
+    {
+        "id": "1f51fd6865dd121a",
+        "type": "function",
+        "z": "900d6bad45ce3bdb",
+        "name": "New-Payload",
+        "func": "var time = global.get('time') || 0;\nvar date = global.get('date') || 0;\nmsg.payload = {\n    \"ID\": \"XXXX\",\n    \"Date\": date,\n    \"Time\": time,\n    \"Location\": \"FORSSA\"\n};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 770,
+        "y": 380,
+        "wires": [
+            [
+                "b025c5cc2e2e70a4",
+                "e7dd0bb686e95b64"
+            ]
+        ]
+    },
+    {
+        "id": "b7df146a80d18ea3",
+        "type": "mqtt in",
+        "z": "900d6bad45ce3bdb",
+        "name": "Forssa-Listener",
+        "topic": "XXXX/Forssa",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "25b85988b913b9bf",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 500,
+        "wires": [
+            [
+                "b2f361454003b1c8"
+            ]
+        ]
+    },
+    {
+        "id": "e7dd0bb686e95b64",
+        "type": "debug",
+        "z": "900d6bad45ce3bdb",
+        "name": "Forssa-Broadcaster-Debug-LocalConsole-msg.payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1140,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "25b85988b913b9bf",
+        "type": "mqtt-broker",
+        "name": "HAMK",
+        "broker": "iot.XXXX ",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

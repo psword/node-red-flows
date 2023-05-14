@@ -1,0 +1,188 @@
+[
+    {
+        "id": "ea437948134fea65",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "41d5f71d44e69351",
+        "type": "rpi-gpio in",
+        "z": "ea437948134fea65",
+        "name": "",
+        "pin": "4",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 230,
+        "y": 240,
+        "wires": [
+            [
+                "ca7d6165bb7048fe",
+                "3d806f6c7a42642a"
+            ]
+        ]
+    },
+    {
+        "id": "1a9d8d5c5a675a78",
+        "type": "debug",
+        "z": "ea437948134fea65",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1000,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "ca7d6165bb7048fe",
+        "type": "switch",
+        "z": "ea437948134fea65",
+        "name": "Movement",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 430,
+        "y": 160,
+        "wires": [
+            [
+                "023632a1ed945642"
+            ]
+        ]
+    },
+    {
+        "id": "023632a1ed945642",
+        "type": "change",
+        "z": "ea437948134fea65",
+        "name": "Movement",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Movement",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 650,
+        "y": 160,
+        "wires": [
+            [
+                "1a9d8d5c5a675a78",
+                "11f4f51e1967b1cd"
+            ]
+        ]
+    },
+    {
+        "id": "3d806f6c7a42642a",
+        "type": "switch",
+        "z": "ea437948134fea65",
+        "name": "No Movement",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 440,
+        "y": 320,
+        "wires": [
+            [
+                "f8cc95c96459702f"
+            ]
+        ]
+    },
+    {
+        "id": "f8cc95c96459702f",
+        "type": "change",
+        "z": "ea437948134fea65",
+        "name": "NO Movement",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "NO Movement",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 640,
+        "y": 320,
+        "wires": [
+            [
+                "1a9d8d5c5a675a78",
+                "11f4f51e1967b1cd"
+            ]
+        ]
+    },
+    {
+        "id": "11f4f51e1967b1cd",
+        "type": "ui_text",
+        "z": "ea437948134fea65",
+        "group": "cc21044e835cf11a",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "text",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 990,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "cc21044e835cf11a",
+        "type": "ui_group",
+        "name": "Pluto",
+        "tab": "e7f4b08f7b87781c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "e7f4b08f7b87781c",
+        "type": "ui_tab",
+        "name": "Jupiter",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
